@@ -1,0 +1,24 @@
+- ec2_remote_facts:
+    filters:
+      instance-state-name: running
+      "tag:OpenShiftRole": Master
+      "tag:OpenShiftCluster": "{{cluster_id}}"
+  register: master_instance_facts
+
+- ec2_remote_facts:
+    filters:
+      instance-state-name: running
+      "tag:OpenShiftRole": Node
+      "tag:OpenShiftCluster": "{{cluster_id}}"
+  register: node_instance_facts
+
+- name: Add our inventory to the inventory file
+  blockinfile:
+    dest: "{{inventory_file}}"
+    block: "{{ lookup('template', 'openshift-inventory.j2') }}"
+    backup: yes
+
+- name: Clone Playbook
+  git:
+    repo: ssh://git@github.com:openshift/openshift-ansible.git
+    dest: /opt/openshift-ansible
