@@ -12,6 +12,10 @@ ansible_ssh_user=centos
 ansible_become=true
 
 openshift_deployment_type=origin
+openshift_hosted_logging_deploy=true
+openshift_master_public_console_url="https://openshift.{{ master_instance_facts.instances[0].tags.Domain }}/console"
+openshift_master_public_api_url="https://openshift.{{ master_instance_facts.instances[0].tags.Domain }}/"
+openshift_master_default_subdomain=openshift.{{ master_instance_facts.instances[0].tags.Domain }}
 
 # uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
 #openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]

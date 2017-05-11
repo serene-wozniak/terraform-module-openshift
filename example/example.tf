@@ -22,7 +22,7 @@ module "openshift_cluster" {
 
   name                  = "miles"
   domain                = "ggcommontest.aws.int.giffgaff.co.uk"
-  nodes                 = 0
+  nodes                 = 3
   ami                   = "ami-7abd0209"
   vpc_id                = "${data.terraform_remote_state.network.vpc_id}"
   github_ssh_privatekey = "${base64decode(var.git_private_key_b64)}"
