@@ -22,7 +22,7 @@
       service:
         name: NetworkManager
         state: started
-        enable: true
+        enabled: yes
     - name: Set authorized key took from file
       authorized_key:
         user: centos
