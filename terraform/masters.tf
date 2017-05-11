@@ -20,8 +20,17 @@ resource "aws_instance" "master" {
   user_data            = "${module.master_bootstrap.cloud_init_config}"
 }
 
+resource "aws_route53_record" "master" {
+  zone_id  = "${var.route53_zone_id}"
+  name     = "openshift-master.${var.domain}"
+  type     = "A"
+  ttl      = "300"
+  records  = ["${aws_instance.master.private_ip}"]
+  provider = "aws.dns"
+}
+
 module "master_bootstrap" {
-  source              = "git@github.com:serene-wozniak/terraform-module-bootstrap.git//ansible_bootstrap?ref=master"
+  source              = "git@github.com:serene-wozniak/terraform-module-bootstrap.git//ansible_bootstrap?ref=post_provision"
   ansible_source_repo = "${var.this_repo}"
   ansible_role        = "master"
 

@@ -31,8 +31,20 @@ module "openshift_cluster" {
   cluster_id            = "${random_pet.cluster_id.id}"
   instance_profile_id   = "oc-jenkins"
   ssh_cluster_publickey = "${var.ssh_cluster_publickey}"
+
+  route53_zone_id = "Z2YGY2YY43KYJW"
 }
 
 provider "aws" {
+  region = "eu-west-1"
+}
+
+provider "aws" {
+  alias = "dns"
+
+  assume_role = {
+    role_arn = "arn:aws:iam::604083106117:role/DNSMgr"
+  }
+
   region = "eu-west-1"
 }

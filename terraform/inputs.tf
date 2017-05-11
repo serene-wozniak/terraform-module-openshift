@@ -28,6 +28,8 @@ variable "vpc_id" {}
 
 variable "cluster_id" {}
 
+variable "route53_zone_id" {}
+
 variable "this_repo" {
   default = "git@github.com:serene-wozniak/terraform-module-openshift.git"
 }
