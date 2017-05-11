@@ -2,16 +2,16 @@
     region: eu-west-1
     filters:
       instance-state-name: running
-      "tag:OpenShiftRole": Master
-      "tag:OpenShiftCluster": "{{cluster_id}}"
+      "tag:OpenshiftRole": Master
+      "tag:OpenshiftCluster": "{{cluster_id}}"
   register: master_instance_facts
 
 - ec2_remote_facts:
     region: eu-west-1
     filters:
       instance-state-name: running
-      "tag:OpenShiftRole": Node
-      "tag:OpenShiftCluster": "{{cluster_id}}"
+      "tag:OpenshiftRole": Node
+      "tag:OpenshiftCluster": "{{cluster_id}}"
   register: node_instance_facts
 
 - name: Add our inventory to the inventory file
