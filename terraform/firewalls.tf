@@ -1,6 +1,6 @@
 resource "aws_security_group" "openshift-external-access" {
   description = "Openshift UI Access"
-  name        = "${var.name} - Minishift Access"
+  name        = "${var.name} - Openshift UI Access"
   vpc_id      = "${var.vpc_id}"
 
   ingress {
@@ -27,7 +27,7 @@ resource "aws_security_group" "openshift-external-access" {
 
 resource "aws_security_group" "openshift-internal-access" {
   description = "Openshift UI Access"
-  name        = "${var.name} - Minishift Access"
+  name        = "${var.name} - Openshift Internal Access"
   vpc_id      = "${var.vpc_id}"
 
   ingress {

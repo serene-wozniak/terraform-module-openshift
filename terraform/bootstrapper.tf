@@ -21,7 +21,7 @@ resource "aws_instance" "bootstrapper" {
 }
 
 module "bootstrapper_bootstrap" {
-  source              = "git@github.com:serene-wozniak/terraform-module-bootstrap.git//ansible_bootstrap?ref=master"
+  source              = "git@github.com:serene-wozniak/terraform-module-bootstrap.git//ansible_bootstrap?ref=post_provision"
   ansible_source_repo = "${var.this_repo}"
   ansible_role        = "bootstrapper"
   ansible_facts       = {}

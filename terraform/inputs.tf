@@ -29,7 +29,7 @@ variable "vpc_id" {}
 variable "cluster_id" {}
 
 variable "this_repo" {
-  default = "git@github.com:serene-wozniak/terraform-module-minishift.git"
+  default = "git@github.com:serene-wozniak/terraform-module-openshift.git"
 }
 
 variable "ssh_cluster_publickey" {}

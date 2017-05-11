@@ -29,7 +29,7 @@ module "openshift_cluster" {
   ssh_ca_publickey      = "${var.ssh_user_ca_publickey}"
   private_subnets       = ["${data.terraform_remote_state.network.private_1_subnet_a}"]
   cluster_id            = "${random_pet.cluster_id.id}"
-  instance_profile_id   = "oc-jenkins-role"
+  instance_profile_id   = "oc-jenkins"
   ssh_cluster_publickey = "${var.ssh_cluster_publickey}"
 }
 

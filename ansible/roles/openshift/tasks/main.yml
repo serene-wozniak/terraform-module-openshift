@@ -20,5 +20,11 @@
 
 - name: Clone Playbook
   git:
-    repo: ssh://git@github.com:openshift/openshift-ansible.git
+    repo: ssh://git@github.com/openshift/openshift-ansible.git
     dest: /opt/openshift-ansible
+
+- name: Place ansible post-provision script
+  copy:
+    src: install_openshift.sh
+    dest: /bootstrap/ansible/post_provision/install_openshift.sh
+    mode: 0777
