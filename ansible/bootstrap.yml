@@ -14,6 +14,15 @@
   vars:
     inventory_file: "/bootstrap/ansible/inventory"
   tasks:
+    - name: Install NetowrkManager
+      package:
+        name: NetworkManager
+        state: latest
+    - name: Start and Enable Network Manager
+      service:
+        name: NetworkManager
+        state: started
+        enable: true
     - name: Set authorized key took from file
       authorized_key:
         user: centos
