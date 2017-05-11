@@ -13,10 +13,9 @@
   register: node_instance_facts
 
 - name: Add our inventory to the inventory file
-  blockinfile:
+  template:
     dest: "{{inventory_file}}"
-    block: "{{ lookup('template', 'openshift-inventory.j2') }}"
-    backup: yes
+    src: 'openshift-inventory.j2'
 
 - name: Clone Playbook
   git:
