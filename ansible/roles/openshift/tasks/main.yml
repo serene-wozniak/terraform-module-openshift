@@ -1,4 +1,5 @@
 - ec2_remote_facts:
+    region: eu-west-1
     filters:
       instance-state-name: running
       "tag:OpenShiftRole": Master
@@ -6,6 +7,7 @@
   register: master_instance_facts
 
 - ec2_remote_facts:
+    region: eu-west-1
     filters:
       instance-state-name: running
       "tag:OpenShiftRole": Node
@@ -14,7 +16,7 @@
 
 - name: Add our inventory to the inventory file
   template:
-    dest: "{{inventory_file}}"
+    dest: "/bootstrap/ansible/openshift-inventory"
     src: 'openshift-inventory.j2'
 
 - name: Clone Playbook

@@ -24,7 +24,10 @@ module "bootstrapper_bootstrap" {
   source              = "git@github.com:serene-wozniak/terraform-module-bootstrap.git//ansible_bootstrap?ref=post_provision"
   ansible_source_repo = "${var.this_repo}"
   ansible_role        = "bootstrapper"
-  ansible_facts       = {}
+
+  ansible_facts = {
+    cluster_id = "${var.cluster_id}"
+  }
 
   ssh_ca_publickey      = "${var.ssh_ca_publickey}"
   github_ssh_privatekey = "${var.github_ssh_privatekey}"
