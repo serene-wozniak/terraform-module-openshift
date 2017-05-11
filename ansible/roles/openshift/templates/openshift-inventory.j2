@@ -24,7 +24,9 @@ openshift_deployment_type=origin
 
 # host group for etcd
 [etcd]
-master.example.com
+{% for instance in master_instance_facts.instances %}
+{{ instance.tags.Name }}.{{ instance.tags.Domain }}
+{% endfor %}
 
 # host group for nodes, includes region info
 [nodes]
