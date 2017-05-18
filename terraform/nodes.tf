@@ -23,7 +23,7 @@ resource "aws_instance" "node" {
 
 resource "aws_route53_record" "nodes" {
   zone_id  = "${var.route53_zone_id}"
-  name     = "openshift-node${format("%02d", count.index + 1)}"
+  name     = "openshift-node${format("%02d", count.index + 1)}.${var.domain}"
   type     = "A"
   ttl      = "300"
   records  = ["${element(aws_instance.node.*.private_ip, count.index)}"]

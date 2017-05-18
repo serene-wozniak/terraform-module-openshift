@@ -17,6 +17,14 @@ data "terraform_remote_state" "network" {
   }
 }
 
+terraform {
+  backend "s3" {
+    bucket = "632813492531-terraform-state"
+    key    = "openshift"
+    region = "eu-west-1"
+  }
+}
+
 module "openshift_cluster" {
   source = "../terraform"
 
