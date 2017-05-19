@@ -44,10 +44,6 @@ module "openshift_cluster" {
 }
 
 provider "aws" {
-  region = "eu-west-1"
-}
-
-provider "aws" {
   alias = "dns"
 
   assume_role = {
