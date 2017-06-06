@@ -35,7 +35,8 @@ module "bootstrapper_bootstrap" {
   ansible_role        = "bootstrapper"
 
   ansible_facts = {
-    cluster_id = "${var.cluster_id}"
+    cluster_id    = "${var.cluster_id}"
+    openshift_tag = "${var.openshift_tag}"
   }
 
   ssh_ca_publickey      = "${var.ssh_ca_publickey}"

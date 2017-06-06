@@ -24,6 +24,10 @@ variable "private_subnets" {
   type = "list"
 }
 
+variable "openshift_tag" {
+  default = "v1.5.1"
+}
+
 variable "vpc_id" {}
 
 variable "cluster_id" {}

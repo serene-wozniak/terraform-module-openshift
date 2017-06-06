@@ -28,8 +28,8 @@ terraform {
 module "openshift_cluster" {
   source = "../terraform"
 
-  name                  = "miles"
-  domain                = "ggcommontest.aws.int.giffgaff.co.uk"
+  name                  = "${terraform.env}"
+  domain                = "${terraform.env}.aws.int.giffgaff.co.uk"
   nodes                 = 3
   ami                   = "ami-7abd0209"
   vpc_id                = "${data.terraform_remote_state.network.vpc_id}"
@@ -39,8 +39,8 @@ module "openshift_cluster" {
   cluster_id            = "${random_pet.cluster_id.id}"
   instance_profile_id   = "oc-jenkins"
   ssh_cluster_publickey = "${var.ssh_cluster_publickey}"
-
-  route53_zone_id = "Z2YGY2YY43KYJW"
+  openshift_tag         = "v1.5.1"
+  route53_zone_id       = "Z2YGY2YY43KYJW"
 }
 
 provider "aws" {
