@@ -39,5 +39,5 @@ openshift_master_default_subdomain=openshift.{{ master_instance_facts.instances[
 {{ instance.tags.Name }}.{{ instance.tags.Domain }}
 {% endfor %}
 {% for instance in node_instance_facts.instances %}
-{{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': '{{instance.region}}', 'zone': '{{instance.placement.zone}}'}"
+{{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': 'infra', 'zone': '{{instance.placement.zone}}'}"
 {% endfor %}
