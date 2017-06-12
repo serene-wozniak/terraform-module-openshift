@@ -12,6 +12,7 @@ ansible_ssh_user=centos
 ansible_become=true
 openshift_cloudprovider_kind=aws
 
+deployment_type=origin
 openshift_deployment_type=origin
 openshift_hosted_logging_deploy=true
 openshift_master_public_console_url="https://openshift.{{ master_instance_facts.instances[0].tags.Domain }}/console"
