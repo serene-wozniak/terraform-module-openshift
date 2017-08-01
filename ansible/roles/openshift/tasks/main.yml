@@ -16,7 +16,8 @@
 
 
 - name: Install Package
-  package: java
+  package:
+    name: java
     state: latest
 
 - name: Add our inventory to the inventory file

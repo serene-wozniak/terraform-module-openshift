@@ -39,7 +39,7 @@ module "openshift_cluster" {
   cluster_id            = "${random_pet.cluster_id.id}"
   instance_profile_id   = "oc-jenkins"
   ssh_cluster_publickey = "${var.ssh_cluster_publickey}"
-  openshift_tag         = "v1.5.1"
+  openshift_tag         = "release-1.5"
   route53_zone_id       = "Z2YGY2YY43KYJW"
   node_instance_type    = "m4.xlarge"
 }
