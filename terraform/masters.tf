@@ -12,6 +12,11 @@ resource "aws_instance" "master" {
     OpenshiftCluster = "${var.cluster_id}"
   }
 
+
+  volume_tags {
+    Name = "openshift-master - /dev/sda1"
+  }
+
   root_block_device = {
     volume_size = "120"
   }

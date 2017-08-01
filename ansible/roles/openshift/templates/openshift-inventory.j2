@@ -11,7 +11,6 @@ ansible_ssh_user=centos
 # If ansible_ssh_user is not root, ansible_become must be set to true
 ansible_become=true
 openshift_cloudprovider_kind=aws
-
 deployment_type=origin
 openshift_deployment_type=origin
 openshift_hosted_logging_deploy=true
@@ -40,5 +39,5 @@ openshift_master_default_subdomain=openshift.{{ master_instance_facts.instances[
 {{ instance.tags.Name }}.{{ instance.tags.Domain }}
 {% endfor %}
 {% for instance in node_instance_facts.instances %}
-{{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': 'infra', 'zone': '{{instance.placement.zone}}'}"
+{{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': '{{instance.region}}', 'usedBy': 'jenkins', 'zone': '{{instance.placement.zone}}'}"
 {% endfor %}

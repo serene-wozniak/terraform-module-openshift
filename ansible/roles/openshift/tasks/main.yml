@@ -14,6 +14,11 @@
       "tag:OpenshiftCluster": "{{cluster_id}}"
   register: node_instance_facts
 
+
+- name: Install Package
+  package: java
+  state: latest
+
 - name: Add our inventory to the inventory file
   template:
     dest: "/bootstrap/ansible/openshift-inventory"

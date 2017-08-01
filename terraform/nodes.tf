@@ -4,13 +4,17 @@ resource "aws_instance" "node" {
   subnet_id              = "${var.private_subnets[0]}"
   vpc_security_group_ids = ["${aws_security_group.openshift-internal-access.id}", "${aws_security_group.openshift-external-access.id}"]
   count                  = "${var.nodes}"
-
+  ebs_optimized         = true
   tags {
     Name             = "openshift-node${format("%02d", count.index + 1)}"
     Domain           = "${var.domain}"
     Role             = "Openshift"
     OpenshiftRole    = "Node"
     OpenshiftCluster = "${var.cluster_id}"
+  }
+
+  volume_tags {
+    Name = "openshift-node${format("%02d", count.index + 1)} - /dev/sda1"
   }
 
   root_block_device = {

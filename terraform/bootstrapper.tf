@@ -15,7 +15,14 @@ resource "aws_instance" "bootstrapper" {
   root_block_device = {
     volume_size = "32"
   }
+  volume_tags {
 
+    Name = "openshift-bootstrapper - /dev/sda1"
+  }
+
+  lifecycle {
+    ignore_changes = ["user_data"]
+  }
   iam_instance_profile = "${var.instance_profile_id}"
   user_data            = "${module.bootstrapper_bootstrap.cloud_init_config}"
 }

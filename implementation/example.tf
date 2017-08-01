@@ -19,7 +19,7 @@ data "terraform_remote_state" "network" {
 
 terraform {
   backend "s3" {
-    bucket = "632813492531-terraform-state"
+    bucket = "841990667482-terraform-state"
     key    = "openshift"
     region = "eu-west-1"
   }
@@ -30,7 +30,7 @@ module "openshift_cluster" {
 
   name                  = "${terraform.env}"
   domain                = "${terraform.env}.aws.int.giffgaff.co.uk"
-  nodes                 = 3
+  nodes                 = 4
   ami                   = "ami-7abd0209"
   vpc_id                = "${data.terraform_remote_state.network.vpc_id}"
   github_ssh_privatekey = "${base64decode(var.git_private_key_b64)}"
@@ -41,6 +41,7 @@ module "openshift_cluster" {
   ssh_cluster_publickey = "${var.ssh_cluster_publickey}"
   openshift_tag         = "v1.5.1"
   route53_zone_id       = "Z2YGY2YY43KYJW"
+  node_instance_type    = "m4.xlarge"
 }
 
 provider "aws" {
