@@ -1,0 +1,7 @@
+---
+# tasks file for giffgaff-services
+- name: Update DNS Upstreams
+  template:
+    src: origin-upstream-dns.conf
+    dest: /etc/dnsmasq.d/origin-upstream-dns.conf
+  notify: restart dnsmasq
