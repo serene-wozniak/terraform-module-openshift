@@ -21,6 +21,10 @@ resource "aws_instance" "node" {
     volume_size = "120"
   }
 
+  lifecycle {
+    ignore_changes = ["user_data", "volume_tags", "tags"]
+  }
+
   iam_instance_profile = "${var.instance_profile_id}"
   user_data            = "${module.node_bootstrap.cloud_init_config}"
 }
