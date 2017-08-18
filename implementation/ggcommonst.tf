@@ -30,7 +30,7 @@ module "openshift_cluster" {
 
   name                  = "${terraform.env}"
   domain                = "${terraform.env}.aws.int.giffgaff.co.uk"
-  nodes                 = 4
+  nodes                 = 6
   ami                   = "ami-7abd0209"
   vpc_id                = "${data.terraform_remote_state.network.vpc_id}"
   github_ssh_privatekey = "${base64decode(var.git_private_key_b64)}"
