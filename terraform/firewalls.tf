@@ -24,6 +24,12 @@ resource "aws_security_group" "openshift-external-access" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  egress {
+    from_port   = 7777
+    to_port     = 7777
+    protocol    = "tcp"
+    cidr_blocks = ["10.31.0.0/18"]
+  }
 
   egress {
     from_port   = 22
