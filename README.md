@@ -29,6 +29,7 @@ Please keep default as empty state, to prevent accidental deletion.
 
 1. Login to a PowerUserAccess role in your target AWS account via the okta cli.
 1. Change into the implementation directory: `cd implementation`
+1. Place the `terraform.tfvars` file from keybase in the implementation directory
 1. Run `terraform env new <clustername>`
 1. `terraform plan` to validate the setup
 1. `terraform apply` to create the resource
