@@ -1,16 +1,9 @@
 # terraform-module-openshift
 
-
-
-## Architecture
-
-[
-![Architecture Diagram](diagram.png)
-](https://www.lucidchart.com/invitations/accept/615dcfa2-17eb-41e3-9fbd-b05625cd253b)
 This module provides a complete openshift origin cluster.
 
 
-It uses the terraform env functionality - to get started, clone this repo, change into the implementation folder and run `terraform workspace list`.
+It uses the terraform workspace functionality - to get started, clone this repo, change into the implementation folder and run `terraform workspace list`.
 
 ```
 * default
@@ -23,6 +16,12 @@ You can switch between these environments with
 ```terraform workspace select <envname>```
 
 Please keep default as empty state, to prevent accidental deletion.
+
+## Architecture
+
+[
+![Architecture Diagram](diagram.png)
+](https://www.lucidchart.com/invitations/accept/615dcfa2-17eb-41e3-9fbd-b05625cd253b)
 
 
 ## Prerequsites
