@@ -3,7 +3,6 @@ resource "random_pet" "cluster_id" {}
 variable "git_private_key_b64" {}
 variable "ssh_user_ca_publickey" {}
 variable "ssh_cluster_publickey" {}
-variable "github_access_token" {}
 
 data "aws_caller_identity" "current" {}
 
@@ -19,7 +18,7 @@ data "terraform_remote_state" "network" {
 
 terraform {
   backend "s3" {
-    bucket = "632813492531-terraform-state"
+    bucket = "841990667482-terraform-state"
     key    = "openshift"
     region = "eu-west-1"
   }
