@@ -33,7 +33,8 @@ Please keep default as empty state, to prevent accidental deletion.
 ### terraform.tfvars
 
 The tfvars file contains three seperate variables, that should be kept secret:
-| Variable name                      | Usage |
+
+| Variable name                      | Usage  |
 |------------------------------------|-----------------|
 |`git_private_key_b64`               | The private key of a user authorized to access github on behalf of the cluster. Usually the `gg-infrabot` user, hashed as base64|
 |`ssh_cluster_publickey`             | The public key of the above - used by ansible on the bootstrapper box |
