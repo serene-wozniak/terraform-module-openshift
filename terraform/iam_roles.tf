@@ -127,5 +127,5 @@ EOF
 
 resource "aws_iam_instance_profile" "oc-jenkins" {
   name  = "oc-jenkins"
-  roles = ["${aws_iam_role.oc-jenkins-role.name}"]
+  roles = "${aws_iam_role.oc-jenkins-role.name}"
 }
