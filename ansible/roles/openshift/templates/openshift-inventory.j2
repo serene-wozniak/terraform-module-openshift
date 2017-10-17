@@ -8,7 +8,16 @@ nodes
 # SSH user, this user should allow ssh based auth without requiring a password
 ansible_ssh_user=centos
 openshift_release=v1.5
-openshift_version=1.5.0
+openshift_version=1.5.1-1.el7
+
+#GiffGaff variables
+
+openshift_giffgaff_environment=vagrant
+openshift_giffgaff_jenkins_install=true
+openshift_giffgaff_vault_install=false
+openshift_giffgaff_aqua_install=false
+openshift_giffgaff_glusterfs_install=false
+openshift_giffgaff_heketi_install=false
 
 # If ansible_ssh_user is not root, ansible_become must be set to true
 ansible_become=true
@@ -16,12 +25,26 @@ openshift_cloudprovider_kind=aws
 deployment_type=origin
 openshift_deployment_type=origin
 openshift_hosted_logging_deploy=true
+
+#master vars
 openshift_master_public_console_url="https://openshift.{{ master_instance_facts.instances[0].tags.Domain }}/console"
 openshift_master_public_api_url="https://openshift.{{ master_instance_facts.instances[0].tags.Domain }}/"
 openshift_master_default_subdomain=openshift.{{ master_instance_facts.instances[0].tags.Domain }}
 
+# Debug level for all OpenShift components (Defaults to 2)  to log errors and warnings only
+debug_level=0
+
+#logging vars
+openshift_hosted_logging_elasticsearch_cluster_size=1
+openshift_logging_namespace=openshift-infra
+openshift_logging_master_public_url="https://openshift.{{ master_instance_facts.instances[0].tags.Domain }}/"
+openshift_clock_enabled=true
+openshift_hosted_logging_deployer_prefix=docker.io/openshift/origin-
+openshift_hosted_logging_deployer_version=v1.5.1
+
 # uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
 #openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+openshift_master_identity_providers=[{'name': 'github', 'login':'true', 'challenge': 'false', 'kind': 'GitHubIdentityProvider', 'client_id':'81dc2554cc28f2428b61', 'client_secret':'941b319d0b25705714a3ed23f0c8f93045306f61', 'organizations':['giffgaff']}]
 
 # host group for masters
 [masters]
@@ -41,5 +64,5 @@ openshift_master_default_subdomain=openshift.{{ master_instance_facts.instances[
 {{ instance.tags.Name }}.{{ instance.tags.Domain }}
 {% endfor %}
 {% for instance in node_instance_facts.instances %}
-{{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': '{{instance.region}}', 'usedBy': 'jenkins', 'zone': '{{instance.placement.zone}}'}"
+{{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': '{{instance.region}}', 'usedBy': 'jenkins', 'logging-infra-fluentd':'true', 'zone': '{{instance.placement.zone}}'}"
 {% endfor %}

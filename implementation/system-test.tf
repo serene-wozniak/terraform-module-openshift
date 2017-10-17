@@ -18,7 +18,7 @@ data "terraform_remote_state" "network" {
 
 terraform {
   backend "s3" {
-    bucket = "841990667482-terraform-state"
+    bucket = "935680151713-terraform-state"
     key    = "openshift"
     region = "eu-west-1"
   }

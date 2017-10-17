@@ -27,6 +27,6 @@
 
 - name: Clone Playbook
   git:
-    repo: ssh://git@github.com/openshift/openshift-ansible.git
+    repo: ssh://git@github.com/serene-wozniak/ansible-openshift-enterprise.git
     dest: /opt/openshift-ansible
-    version: "{{openshift_tag}}"
+    version: "master"

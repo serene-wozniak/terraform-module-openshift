@@ -37,7 +37,7 @@ resource "aws_route53_record" "bootstrapper" {
 }
 
 module "bootstrapper_bootstrap" {
-  source              = "git@github.com:serene-wozniak/terraform-module-bootstrap.git//ansible_bootstrap?ref=post_provision"
+  source              = "git@github.com:serene-wozniak/terraform-module-bootstrap.git//ansible_bootstrap?ref=system_test_post_provision"
   ansible_source_repo = "${var.this_repo}"
   ansible_role        = "bootstrapper"
 
