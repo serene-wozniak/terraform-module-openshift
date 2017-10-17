@@ -13,7 +13,7 @@ openshift_version=1.5.1-1.el7
 #GiffGaff variables
 
 openshift_giffgaff_environment=vagrant
-openshift_giffgaff_jenkins_install=true
+openshift_giffgaff_jenkins_install=false
 openshift_giffgaff_vault_install=false
 openshift_giffgaff_aqua_install=false
 openshift_giffgaff_glusterfs_install=false
@@ -45,7 +45,7 @@ openshift_hosted_logging_deployer_version=v1.5.1
 
 # uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
 #openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
-openshift_master_identity_providers='[{"name": "giffgaffokta", "login": "true", "challenge": "false", "mappingMethod": "claim", "kind": "OpenIDIdentityProvider", "client_id": "0oa108asftbzKBeDd0i7", "client_secret": "FH5SDFO3IDIY5Ar8umxh8CqYh34XfVBVWvtxqh8G", "extraScopes": ["email", "profile"], "claims": {"id": ["sub"], "preferredUsername": ["preferred_username"], "name": ["name"], "email": ["email"]}, "urls": {"authorize": "https://ggauth.okta-emea.com/oauth2/v1/authorize", "token": "https://ggauth.okta-emea.com/oauth2/v1/token", "userInfo": "https://ggauth.okta-emea.com/oauth2/v1/userinfo"} }]'
+openshift_master_identity_providers='[{"name": "giffgaffokta", "login": "true", "challenge": "false", "mappingMethod": "claim", "kind": "OpenIDIdentityProvider", "client_id": "0oa1bvfjvvvS5n6LT0i7", "client_secret": "axxRBBWVS4Dgdk0AJscfqayE9XskPtl5m-H5dvvA", "extraScopes": ["email", "profile"], "claims": {"id": ["sub"], "preferredUsername": ["preferred_username"], "name": ["name"], "email": ["email"]}, "urls": {"authorize": "https://ggauth.okta-emea.com/oauth2/v1/authorize", "token": "https://ggauth.okta-emea.com/oauth2/v1/token", "userInfo": "https://ggauth.okta-emea.com/oauth2/v1/userinfo"} }]'
 
 # host group for masters
 [masters]
