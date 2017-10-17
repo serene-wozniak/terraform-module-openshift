@@ -18,6 +18,7 @@ openshift_giffgaff_vault_install=false
 openshift_giffgaff_aqua_install=false
 openshift_giffgaff_glusterfs_install=false
 openshift_giffgaff_heketi_install=false
+openshift_giffgaff_monitoring_install=false
 
 # If ansible_ssh_user is not root, ansible_become must be set to true
 ansible_become=true
@@ -44,7 +45,7 @@ openshift_hosted_logging_deployer_version=v1.5.1
 
 # uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
 #openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
-openshift_master_identity_providers=[{'name': 'github', 'login':'true', 'challenge': 'false', 'kind': 'GitHubIdentityProvider', 'client_id':'81dc2554cc28f2428b61', 'client_secret':'941b319d0b25705714a3ed23f0c8f93045306f61', 'organizations':['giffgaff']}]
+openshift_master_identity_providers='[{"name": "giffgaffokta", "login": "true", "challenge": "false", "mappingMethod": "claim", "kind": "OpenIDIdentityProvider", "client_id": "0oa108asftbzKBeDd0i7", "client_secret": "FH5SDFO3IDIY5Ar8umxh8CqYh34XfVBVWvtxqh8G", "extraScopes": ["email", "profile"], "claims": {"id": ["sub"], "preferredUsername": ["preferred_username"], "name": ["name"], "email": ["email"]}, "urls": {"authorize": "https://ggauth.okta-emea.com/oauth2/v1/authorize", "token": "https://ggauth.okta-emea.com/oauth2/v1/token", "userInfo": "https://ggauth.okta-emea.com/oauth2/v1/userinfo"} }]'
 
 # host group for masters
 [masters]
@@ -61,7 +62,7 @@ openshift_master_identity_providers=[{'name': 'github', 'login':'true', 'challen
 # host group for nodes, includes region info
 [nodes]
 {% for instance in master_instance_facts.instances %}
-{{ instance.tags.Name }}.{{ instance.tags.Domain }}
+{{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': 'infra', 'logging-infra-fluentd': 'true'} openshift_schedulable=true"
 {% endfor %}
 {% for instance in node_instance_facts.instances %}
 {{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': '{{instance.region}}', 'usedBy': 'jenkins', 'logging-infra-fluentd':'true', 'zone': '{{instance.placement.zone}}'}"
