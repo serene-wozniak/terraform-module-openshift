@@ -62,7 +62,7 @@ openshift_master_identity_providers='[{"name": "giffgaffokta", "login": "true", 
 # host group for nodes, includes region info
 [nodes]
 {% for instance in master_instance_facts.instances %}
-{{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': 'infra', 'logging-infra-fluentd': 'true'} openshift_schedulable=true"
+{{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': 'infra', 'logging-infra-fluentd': 'true'}" openshift_schedulable=true
 {% endfor %}
 {% for instance in node_instance_facts.instances %}
 {{ instance.tags.Name }}.{{ instance.tags.Domain }} openshift_node_labels="{'region': '{{instance.region}}', 'usedBy': 'jenkins', 'logging-infra-fluentd':'true', 'zone': '{{instance.placement.zone}}'}"
